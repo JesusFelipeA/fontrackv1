@@ -10,14 +10,15 @@ class UsuarioController extends Controller
 {
     // Obtener todos los usuarios
     public function index() {
-        return response()->json(User::all());
+        $users = User::all(); // Aquí debe ser el modelo User, no el controlador
+        return view('index', compact('users')); // Debe coincidir con el nombre de la vista
     }
 
     // Registrar un nuevo usuario
     public function store(Request $request) {
         $request->validate([
             'nombre' => 'required',
-            'correo' => 'required|email:tb_users',
+            'correo' => 'required',
             'password' => 'required|min:6',
             'tipo_usuario' => 'required|integer',
             'foto_usuario' => 'nullable|string',

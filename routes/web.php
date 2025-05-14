@@ -23,18 +23,20 @@ Route::get('/', function () {
 });
 
 // Rutas de usuarios (CRUD)
-Route::get('/users', [UsuarioController::class, 'index'])->name('users.index');
-Route::get('/users/{id}', [UsuarioController::class, 'show'])->name('users.show');
-Route::post('/users', [UsuarioController::class, 'store'])->name('users.store');
-Route::put('/users/{id}', [UsuarioController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [UsuarioController::class, 'destroy'])->name('users.destroy');
+Route::name('users')->get('/users', [UsuarioController::class, 'index']);
+Route::name('user_detail')->get('/users/{id}', [UsuarioController::class, 'show']);
+Route::name('register_user')->post('/register_user', [UsuarioController::class, 'store']);
+Route::name('edit_user')->get('/edit_user/{id}', [UsuarioController::class, 'update']);
+Route::name('update_user')->put('/update_user/{id}', [UsuarioController::class, 'update']);
+Route::delete('/delete_user/{id}', [UsuarioController::class, 'destroy'])->name('delete_user');
 
 // Rutas de materiales (CRUD)
-Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
-Route::get('/materials/{id}', [MaterialController::class, 'show'])->name('materials.show');
-Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
-Route::put('/materials/{id}', [MaterialController::class, 'update'])->name('materials.update');
-Route::delete('/materials/{id}', [MaterialController::class, 'destroy'])->name('materials.destroy');
+Route::name('materials')->get('/materials', [MaterialController::class, 'index']);
+Route::name('material_detail')->get('/materials/{id}', [MaterialController::class, 'show']);
+Route::name('register_material')->post('/materials', [MaterialController::class, 'store']);
+Route::name('edit_material')->get('/edit_material/{id}', [MaterialController::class, 'update']);
+Route::name('update_material')->put('/update_material/{id}', [MaterialController::class, 'update']);
+Route::delete('/delete_material/{id}', [MaterialController::class, 'destroy'])->name('delete_material');
 
 // Ruta protegida solo para admins
 Route::middleware(['auth', 'role:admin'])->group(function () {
