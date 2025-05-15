@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +10,7 @@ class UsuarioController extends Controller
 {
     // Obtener todos los usuarios
     public function index() {
-        $users = User::all(); // Aquí debe ser el modelo User, no el controlador
+        $users = Usuarios::all(); // Aquí debe ser el modelo User, no el controlador
         return view('index', compact('users')); // Debe coincidir con el nombre de la vista
     }
 
@@ -24,7 +24,7 @@ class UsuarioController extends Controller
             'foto_usuario' => 'nullable|string',
         ]);
 
-        $user = User::create([
+        $user = Usuarios::create([
             'nombre' => $request->nombre,
             'correo' => $request->correo,
             'password' => Hash::make($request->password),
@@ -37,19 +37,19 @@ class UsuarioController extends Controller
 
     // Obtener un usuario por ID
     public function show($id) {
-        return response()->json(User::findOrFail($id));
+        return response()->json(Usuarios::findOrFail($id));
     }
 
     // Actualizar usuario
     public function update(Request $request, $id) {
-        $user = User::findOrFail($id);
+        $user = Usuarios::findOrFail($id);
         $user->update($request->only(['nombre', 'correo', 'tipo_usuario', 'foto_usuario']));
         return response()->json(['message' => 'Usuario actualizado', 'data' => $user]);
     }
 
     // Eliminar usuario
     public function destroy($id) {
-        User::findOrFail($id)->delete();
+        Usuarios::findOrFail($id)->delete();
         return response()->json(['message' => 'Usuario eliminado']);
     }
 }

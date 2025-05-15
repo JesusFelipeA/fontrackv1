@@ -23,6 +23,7 @@
                         <th>ID Usuario</th>
                         <th>Nombre</th>
                         <th>Correo</th>
+                        <th>Contraseña</th>
                         <th>Tipo de Usuario</th>
                         <th>Acciones</th>
                     </tr>
@@ -33,6 +34,7 @@
                             <td>{{ $user->id_usuario }}</td>
                             <td>{{ $user->nombre }}</td>
                             <td>{{ $user->correo }}</td>
+                            <td>{{ $user->password }}</td>
                             <td>{{ $user->tipo_usuario }}</td>
                             <td>
                                 <a href="{{ route('user_detail', $user->id_usuario) }}" class="btn btn-info btn-sm">Ver</a>

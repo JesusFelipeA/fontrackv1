@@ -18,6 +18,8 @@ class Usuarios extends Authenticatable
         'foto_usuario'
     ];
 
+    protected $primaryKey = ['id_usuario'];
+
     protected $hidden = ['password']; // Oculta la contraseña en las respuestas JSON
 
     public $timestamps = true; // Activa timestamps si la tabla tiene created_at y updated_at
