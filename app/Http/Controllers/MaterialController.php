@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 class MaterialController extends Controller
 {
     // Obtener todos los materiales
-    public function index() {
-        return response()->json(Material::all());
+    public function index()
+    {
+        $materiales = Material::paginate(10); // Mostrará 10 usuarios por página
+        return view('index_materiales', compact('materiales'));
     }
 
     // Registrar un nuevo material

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,7 +9,9 @@ class Usuarios extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'tb_users'; // Nombre de la tabla en la base de datos
+    protected $table = 'tb_users'; 
+
+    protected $primaryKey = 'id_usuario'; 
 
     protected $fillable = [
         'nombre',
@@ -18,9 +21,7 @@ class Usuarios extends Authenticatable
         'foto_usuario'
     ];
 
-    protected $primaryKey = ['id_usuario'];
+    protected $hidden = ['password']; 
 
-    protected $hidden = ['password']; // Oculta la contraseña en las respuestas JSON
-
-    public $timestamps = true; // Activa timestamps si la tabla tiene created_at y updated_at
+    public $timestamps = true; 
 }
